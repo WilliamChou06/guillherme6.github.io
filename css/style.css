@@ -1,0 +1,147 @@
+body, html{
+    margin:0;
+    color: #666;
+    margin-top: 27px;
+    background: #000;
+}
+
+h1, h2{
+    font-family: Poppins;
+}
+
+h1{
+    font-size: 50px;
+}
+
+p, .nav-link{
+    font-family: Raleway;
+    font-size: 25px;
+}
+
+.img1, .img2, .img3{
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    border-top: #000 3px solid;
+    border-bottom: #000 3px solid;
+    min-height: 100vh !important;
+}
+
+.img1{
+    background: url(../images/image1.jpeg);
+    align-items: center;
+    justify-content: center;
+}
+
+.img2{
+    background: url(../images/image2.jpeg);
+
+}
+
+.img2 h1, .img3 h1{
+    background: #000;;
+    color: #fff;
+    padding-bottom: 10px;
+}
+
+.img2 .portfolio-container{
+    flex-direction: row;
+}
+
+.img2 .portfolio-container img{
+    width: 100% !important;
+    height: 100%;
+    padding: 10px;
+}
+
+.portfolio-box{
+    flex: 1;
+}
+
+.img3{
+    background: url(../images/image3.jpeg);
+}
+
+.imgtext1 h1, .imgtext1 p{
+    text-align: center !important;
+    color: #fff
+}
+
+.nav-link{
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.nav-link:hover{
+    background: #fff;
+    color: #333 !important;
+}
+
+#footer{
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-family: Poppins;
+}
+
+#footer h4{
+    font-size: 15px;
+}
+
+.form-group label{
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+
+}
+
+.form-group textarea{
+    width: 100%
+}
+
+.form-container{
+    width: 70%;
+}
+
+form button{
+    padding: 20px !important;
+}
+
+
+.nav-social{
+    font-size: 50px;
+    list-style: none !important;
+}
+
+.navbar-social{
+    position: absolute;
+    right: 45% !important;
+}
+
+.navbar-social ul li{
+    white-space: nowrap !important;
+    display: inline;
+}
+
+.nav-social.phone span{
+    position: relative;
+    color: #fff;
+    font-size: 15px !important;
+    top: -7px;
+    left: 10px;
+}
+
+@media(max-width: 968px){
+    .navbar-social{
+        top: 50px;
+        right: 50%;
+    }
+    .imgtext1{
+        padding: 20px;
+    }
+    .imgtext1 h1{
+        margin-bottom: 20px;
+    }
+}
