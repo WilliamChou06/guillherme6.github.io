@@ -1,0 +1,45 @@
+#header-title{
+    font-family: 'Montserrat';
+    font-size: 50px;
+}
+
+#title-color{
+    color: rgb(18, 181, 231)
+}
+
+#title-color2{
+    color: #333;
+}
+
+#quoteBtn{
+    right: 0;
+}
+
+#quote_author{
+    font-size: 30px !important;
+}
+
+footer{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    padding: 15px 0 5px 15px;
+    font-family: 'Montserrat';
+    text-align: center;
+}
+
+.container{
+    max-width: 800px;
+}
+
+@media(max-width: 700px){
+    .btn{
+        font-size: 15px !important;
+    }
+    .jumbotron{
+        padding-bottom: 45px;
+    }
+}
