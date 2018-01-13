@@ -1,0 +1,20 @@
+footer{
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+    background-color: #333;
+    width: 100%;
+}
+
+footer h3{
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.container{
+    height: 70vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}

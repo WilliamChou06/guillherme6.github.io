@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Wapp</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand mx-auto" href="#">Wetapp</a>
+    </nav>
+
+    <div class="container">
+        <div id="weatherDiv">
+            <h4 class="text-center">Fetching Geolocation Data...</h4>
+        </div>
+    </div>
+
+        <footer>
+            <h3>Guillherme Chou, 2018</h3>
+        </footer>
+
+
+    <script>
+
+        const weatherDiv = document.getElementById('weatherDiv');
+        document.querySelector('body').addEventListener('click', tempConvert);
+
+        getWeather();
+
+        function getWeather() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    fetch(`https://fcc-weather-api.glitch.me/api/current?lat=${position.coords.latitude}&lon=${position.coords.longitude} `)
+                        .then(res => res.json())
+                        .then(data => {
+                            weatherDiv.innerHTML = `
+                                <div class="card">
+                                    <img class="card-img-top mx-auto" src='${data.weather[0].icon}' style="height: 100px; width: 100px"></img>
+                                    <div class="card-body">
+                                       <h4 class="card-title text-center">${data.name}</h4> 
+                                       <p class="card-text text-center" style="font-size: 35px"><span id="temp-value">${data.main.temp}</span>  <button class="btn btn-primary tempConvert" id="tempBtn">Cº</button></p>
+                                       
+                                    </div>
+                                </div>
+                            `;
+                            console.log(data)
+                        })
+                });
+            } else {
+                weatherDiv.innerHTML = 'Geolocation Permission Denied';
+            }
+        };
+
+        function tempConvert(e){
+            if(e.target.className.includes('tempConvert')){
+                var temp = document.getElementById('temp-value');
+                tempF = temp.value * 9 / 5 + 32;
+                temp.innerHTML = tempF;
+                document.getElementById('tempBtn').innerHTML= 'Fº';
+            }
+        }
+    </script>
+</body>
+
+</html>
