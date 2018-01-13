@@ -9,7 +9,7 @@ $(document).ready(() => {
 })
 
 function getMovies(searchText){
-    fetch('http://www.omdbapi.com/?apikey=2ef4335d&s='+searchText)
+    fetch('https://www.omdbapi.com/?apikey=2ef4335d&s='+searchText)
     .then((res) => {
         return res.json();
     })

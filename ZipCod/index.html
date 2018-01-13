@@ -36,7 +36,7 @@
             e.preventDefault();
             const zip = document.getElementById('zip').value;
             
-            fetch(`http://api.zippopotam.us/US/${zip}`)
+            fetch(`https://api.zippopotam.us/US/${zip}`)
             .then((res) => {
                 if(res.status != 200){
                     showIcon('remove');
