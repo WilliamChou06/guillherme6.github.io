@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>ZipCod</title>
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid bg-dark">
+        <div class="container" id="menuContainer">
+          <h3 class="text-white">US Location Info</h3>
+          <p class="text-white">Enter a zipcode to get the location info</p>
+          <form id="zipForm">
+            <div class="input-group">
+                <span class="input-group-addon" id="addonLeft"><i class="fa fa-map-o"></i></span>
+                <input type="text" class="form-control" placeholder="Enter Zipcode" aria-label="Username" aria-describedby="basic-addon1" id="zip">
+                <span class="input-group-addon icon-check" id="addonRight"><i class="fa fa-check"></i></span>
+                <span class="input-group-addon icon-remove" id="addonRight2"><i class="fa fa-close"></i></span>
+              </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="output"></div>
+
+      <script>
+          document.getElementById('zipForm').addEventListener('submit', getLocationInfo);
+          document.querySelector('body').addEventListener('click', deleteLocation);
+
+          function getLocationInfo(e){
+            e.preventDefault();
+            const zip = document.getElementById('zip').value;
+            
+            fetch(`http://api.zippopotam.us/US/${zip}`)
+            .then((res) => {
+                if(res.status != 200){
+                    showIcon('remove');
+                    document.getElementById('output').innerHTML = `
+                        <div class="alert alert-danger">Invalid Zipcode, please try again</div>
+                    `;
+                    throw Error(res.statusText);
+                } else {
+                    showIcon('check');
+                    return res.json();
+                }
+
+            })
+            .then((info) => {
+                console.log(info);
+                output = '';
+                info.places.forEach(place => {
+                    output += `
+                    <div class="card location-info">
+                        <div class="card-header bg-dark">
+                            <p class="text-white">Location Info</p>
+                            <button class="close"><i class="fa fa-close close"></i></button>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>City: </strong>${place['place name']}</li>
+                                <li class="list-group-item"><strong>State: </strong>${place['state']}</li>
+                                <li class="list-group-item"><strong>Longitude: </strong>${place['longitude']}</li>
+                                <li class="list-group-item"><strong>Latitude: </strong>${place['latitude']}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    `
+                })
+                document.getElementById('output').innerHTML = output;
+            })
+            .catch(err => console.log(err));
+          }
+
+          function showIcon(icon){
+            document.querySelector('.icon-remove').style.display = 'none';
+            document.querySelector('.icon-check').style.display = 'none';
+
+            document.querySelector(`.icon-${icon}`).style.display = 'inline';
+          }
+
+          function deleteLocation(e){
+              if(e.target.className.includes('close')){
+                document.querySelector('.icon-check').style.display = 'none';
+                document.querySelector('#zip').value = '';
+                document.querySelector('.location-info').remove();
+              }
+          }
+      
+      </script>
+</body>
+</html>

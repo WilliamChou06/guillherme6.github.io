@@ -1,0 +1,17 @@
+#visitBtn{
+    border-radius: 0;
+}
+
+.badge{
+    border-radius: 0;
+}
+
+#repoCard{
+    margin-bottom: 2px !important;
+    border-radius: 0;
+}
+
+#repoText p{
+    padding-left: 10px;
+    padding-top: 10px;
+}

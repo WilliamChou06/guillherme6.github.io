@@ -1,0 +1,51 @@
+body{
+    font-family: Montserrat;
+}
+
+#menuContainer{
+    font-family: Montserrat;
+}
+
+#menuContainer p{
+    font-size: 15px;
+}
+
+#zipForm .input-group-addon{
+    border-radius: 0;
+    background: #fff;
+    border: none !important;
+}
+
+#zipForm input{
+    border: none;
+}
+
+#zipForm #addonLeft{
+    color: rgb(77, 181, 199);
+}
+
+#zipForm #addonRight{
+    color: rgb(2, 204, 12);
+    font-size: 22px;
+    display: none;
+}
+
+#zipForm #addonRight2{
+    color: red;
+    font-size: 22px;
+    z-index: 100;
+    display: none;
+}
+
+.close{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 20px;
+    color: red;
+}
+
+.close:hover{
+    cursor: pointer;
+    color: #fff;
+}
