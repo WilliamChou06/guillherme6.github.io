@@ -21,15 +21,14 @@
         </div>
     </div>
 
-        <footer>
-            <h3>Guillherme Chou, 2018</h3>
-        </footer>
+    <footer>
+        <h3>Guillherme Chou, 2018</h3>
+    </footer>
 
 
     <script>
 
         const weatherDiv = document.getElementById('weatherDiv');
-        document.querySelector('body').addEventListener('click', tempConvert);
 
         getWeather();
 
@@ -39,17 +38,17 @@
                     fetch(`https://fcc-weather-api.glitch.me/api/current?lat=${position.coords.latitude}&lon=${position.coords.longitude} `)
                         .then(res => res.json())
                         .then(data => {
+                            var tempF = financial(data.main.temp * 9 / 5 + 32);
                             weatherDiv.innerHTML = `
                                 <div class="card">
                                     <img class="card-img-top mx-auto" src='${data.weather[0].icon}' style="height: 100px; width: 100px"></img>
                                     <div class="card-body">
                                        <h4 class="card-title text-center">${data.name}</h4> 
-                                       <p class="card-text text-center" style="font-size: 35px"><span id="temp-value">${data.main.temp}</span>  <button class="btn btn-primary tempConvert" id="tempBtn">Cº</button></p>
-                                       
+                                       <p class="card-text text-center" style="font-size: 35px"><span class="tempC">${data.main.temp}</span>
+                                       <span class="tempF" style="display: none">${tempF}</span>  <button class="btn btn-primary tempConvert" id="tempBtn" onclick="changeBtn()">Cº</button></p>
                                     </div>
                                 </div>
                             `;
-                            console.log(data)
                         })
                 });
             } else {
@@ -57,14 +56,22 @@
             }
         };
 
-        function tempConvert(e){
-            if(e.target.className.includes('tempConvert')){
-                var temp = document.getElementById('temp-value');
-                tempF = temp.value * 9 / 5 + 32;
-                temp.innerHTML = tempF;
-                document.getElementById('tempBtn').innerHTML= 'Fº';
+        function financial(x) {
+            return Number.parseFloat(x).toFixed(2);
+        };
+
+
+        function changeBtn() {
+            if (document.querySelector('.tempConvert').innerHTML == 'Cº') {
+                document.querySelector('.tempConvert').innerHTML = 'Fº';
+                document.querySelector('.tempC').style.display = 'none';
+                document.querySelector('.tempF').style.display = 'inline';
+            } else if(document.querySelector('.tempConvert').innerHTML == 'Fº'){
+                document.querySelector('.tempConvert').innerHTML = 'Cº';
+                document.querySelector('.tempC').style.display = 'inline';
+                document.querySelector('.tempF').style.display = 'none';
             }
-        }
+        };
     </script>
 </body>
 
