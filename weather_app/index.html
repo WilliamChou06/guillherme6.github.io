@@ -45,7 +45,7 @@
                                     <div class="card-body">
                                        <h4 class="card-title text-center">${data.name}</h4> 
                                        <p class="card-text text-center" style="font-size: 35px"><span class="tempC">${data.main.temp}</span>
-                                       <span class="tempF" style="display: none">${tempF}</span>  <button class="btn btn-primary tempConvert" id="tempBtn" onclick="changeBtn()">Cº</button></p>
+                                       <span class="tempF" style="display: none">${tempF}</span>  <button class="btn btn-primary tempBtn" id="tempBtn" onclick="changeBtn()">Cº</button></p>
                                     </div>
                                 </div>
                             `;
@@ -62,14 +62,18 @@
 
 
         function changeBtn() {
-            if (document.querySelector('.tempConvert').innerHTML == 'Cº') {
-                document.querySelector('.tempConvert').innerHTML = 'Fº';
-                document.querySelector('.tempC').style.display = 'none';
-                document.querySelector('.tempF').style.display = 'inline';
-            } else if(document.querySelector('.tempConvert').innerHTML == 'Fº'){
-                document.querySelector('.tempConvert').innerHTML = 'Cº';
-                document.querySelector('.tempC').style.display = 'inline';
-                document.querySelector('.tempF').style.display = 'none';
+            var tempBtn = document.querySelector('.tempBtn');
+            var tempC = document.querySelector('.tempC');
+            var tempF = document.querySelector('.tempF');
+
+            if (tempBtn.innerHTML == 'Cº') {
+                tempBtn.innerHTML = 'Fº';
+                tempC.style.display = 'none';
+                tempF.style.display = 'inline';
+            } else if(tempBtn.innerHTML == 'Fº'){
+                tempBtn.innerHTML = 'Cº';
+                tempC.style.display = 'inline';
+                tempF.style.display = 'none';
             }
         };
     </script>
