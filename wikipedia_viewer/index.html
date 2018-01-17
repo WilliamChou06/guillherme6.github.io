@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Wiki Viewer</title>
+</head>
+
+<body>
+    <div class="container" id="formContainer">
+        <form id="formSearch">
+            <div class="form-group">
+                <br>
+                <h4 class="text-center">Wiki Viewer!</h4>
+                <input type="text" class="form-control text-center" id="searchInput" placeholder="Search Wiki Pages!">
+            </div>
+            <p id="btnInline">
+                <a href="https://en.wikipedia.org/wiki/Special:Random" class="btn btn-success" target="_blank">Random Page!</a>
+            </p>
+        </form>
+    </div>
+
+    <div class="container" id="wikiInfo">
+    </div>
+
+    <script>
+        document.getElementById('formSearch').addEventListener('submit', searchWiki);
+
+        function searchWiki(e){
+            e.preventDefault();
+            const searchInput = document.getElementById('searchInput').value;
+
+            fetch(`https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search=${searchInput}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const wikiInfo = document.getElementById('wikiInfo');
+                wikiInfo.innerHTML = '';
+                for(var i = 0; i < data[1].length; i++){
+                    if(data[2][i] == ''){
+                        return false;
+                    } else{
+                        wikiInfo.innerHTML += `
+                        <a href="${data[3][i]}" target="_blank" id="wikiBox"><div class="card">
+                                <h1 class="display-4 card-title">${data[1][i]}</h1>
+                                <p class="card-text">${data[2][i]}</p>
+                            </div></a>
+                    `
+                    }
+                    
+                }
+            })
+        }
+
+    </script>
+</body>
+
+</html>

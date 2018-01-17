@@ -1,0 +1,31 @@
+body{
+    background-color: #092B40;
+    font-family: 'Raleway';
+    color: #fff;
+}
+
+.formContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#searchBtn{
+    margin-left: 3px;
+}
+
+#btnInline{
+    text-align: center;
+}
+
+#wikiBox{
+    display: block;
+    text-decoration: none;
+    opacity: 0.95;
+}
+
+#wikiBox:hover{
+    border-left: #333 solid 10px;
+    opacity: 1;
+}
