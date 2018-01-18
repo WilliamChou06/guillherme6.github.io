@@ -9,6 +9,7 @@
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animate.css">
     <title>Wiki Viewer</title>
 </head>
 
@@ -25,9 +26,16 @@
             </p>
         </form>
     </div>
+    <br>
 
-    <div class="container" id="wikiInfo">
+    <div class="container animated" id="wikiInfo">
     </div>
+
+    <br><br>
+
+    <footer id="footer">
+        <h4>Guillermo Chou, 2018</h4>
+    </footer>
 
     <script>
         document.getElementById('formSearch').addEventListener('submit', searchWiki);
@@ -48,13 +56,13 @@
                     } else{
                         wikiInfo.innerHTML += `
                         <a href="${data[3][i]}" target="_blank" id="wikiBox"><div class="card">
-                                <h1 class="display-4 card-title">${data[1][i]}</h1>
+                                <h3 class="card-title">${data[1][i]}</h3>
                                 <p class="card-text">${data[2][i]}</p>
                             </div></a>
                     `
                     }
-                    
-                }
+                };
+                wikiInfo.classList.add('bounceIn');
             })
         }
 
