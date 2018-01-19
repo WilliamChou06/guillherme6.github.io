@@ -1,0 +1,81 @@
+body{
+    font-family: 'Quicksand';
+    background: #092B40;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    background: #fff;
+    min-height: 300px;
+    padding: 0;
+}
+
+.channel{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background: #fff;
+    color: #000;
+    border: 1px #333 solid;
+}
+
+.channel h4, .channel-status h3{
+    padding-left: 15px !important;
+}
+
+.channel p, .channel-status p{
+    padding-right: 15px !important;
+}
+
+.channel-status{
+    display: flex;
+    justify-content: space-between;
+    background: #333;
+    color: #fff;
+}
+
+
+#titleh3{
+    background: #333;
+    color: #fff;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-bottom: 2px solid rgb(218, 110, 9);
+}
+
+.offline{
+    background: red;
+}
+
+.offline p{
+    padding-left: 12px;
+    padding-top: 15px;
+}
+
+.offline-opaque{
+    opacity: 0.5;
+}
+
+.channel-online h4:hover{
+    background: rgb(9, 172, 136) !important;
+    color: #fff !important;
+}
+
+.channel-online h4{
+    background: green;
+    padding-left: 15px;
+}
+
+.channel-online p{
+    padding-left: 15px;
+}
+
+.link{
+    text-decoration: none !important;
+    color: #fff;
+}
