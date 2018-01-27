@@ -1,0 +1,64 @@
+body{
+    font-family: Tahoma;
+    background: #333;
+    color: #fff;
+}
+
+.flex{
+    display: flex;
+}
+
+.col{
+    padding: 8px;
+}
+
+.price-box{
+    list-style: none;
+    background: #fff;
+    color: #555;
+    border: 1px solid #555;
+    margin: 0;
+    padding: 0;
+    transition: 0.3s;
+}
+
+.price-box:hover, .price-box.best{
+    box-shadow: 0 10px 15px 0 #000;
+}
+
+.price-box .header{
+     background: #111;
+     color: #fff;
+     font-size: 25px;
+}
+
+.price-box .header.header-green{
+    background: #4caf50;
+}
+
+.price-box li{
+    padding: 20px;
+    border-bottom: 1px solid #000;
+    text-align: center;
+}
+
+.price-box .emph{
+    background: #f4f4f4;
+    font-size: 20px;
+}
+
+.button{
+    background: #4caf50;
+    border: none;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    text-align: center;
+}
+
+@media(max-width: 568px){
+    .flex{
+        flex-direction: column;
+    }
+}
