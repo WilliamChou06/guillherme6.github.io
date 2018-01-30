@@ -6,7 +6,7 @@
 }
 
 body{
-    background: url(glacier.jpeg);
+    background: url(glacier.jpeg) center;
     background-size: cover;
     color: var(--font-color);
     display: grid;
