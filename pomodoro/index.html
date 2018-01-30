@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Pomodoro-san!</title>
+</head>
+
+<body>
+    <div class="sessionCtrl">
+        <h3>Session Length</h3>
+        <button class="operator">-</button>
+        <span id="sessionTime">25</span>
+        <button class="operator">+</button>
+    </div>
+    <div class="breakCtrl">
+        <h3>Break Length</h3>
+        <button>-</button>
+        <span id="breakTime">5</span>
+        <button>+</button>
+    </div>
+
+    <div class="resetDiv"><span id="reset">Reset</span></div>
+
+    <div id="clock" class="start animated">
+        <h3 class="clockTitle">Session</h3>
+        <span class="clockTimer" onclick="handleStartPause()">25:00</span>
+    </div>
+
+
+    <script>
+        var sessionBtn = document.querySelectorAll('.sessionCtrl .operator');
+        var sessionTime = document.getElementById('sessionTime');
+        var breakBtn = document.querySelectorAll('.breakCtrl button');
+        var breakTime = document.getElementById('breakTime');
+        var breakVal = 5;
+        breakTime.innerHTML = breakVal;
+        var clock = document.getElementById('clock');
+        var clockTitle = document.querySelector('.clockTitle');
+        var clockTimer = document.querySelector('.clockTimer');
+        document.getElementById('reset').addEventListener('click', reset);
+        timerType = 'session';
+        changeType();
+
+        var sessionVal = 25;
+        sessionTime.innerHTML = sessionVal;
+
+        var audio = new Audio('rooster.mp3');
+
+
+        for (var i in sessionBtn) {
+            sessionBtn[i].onclick = function () {
+                if (this.innerHTML == '-') {
+                    if (sessionVal > 1) {
+                        sessionVal -= 1;
+                        sessionTime.innerHTML = sessionVal;
+                        clockTimer.innerHTML = convertToString(sessionVal * 60);
+                        clockTitle.innerHTML = 'Session';
+                    }
+
+                } else if (this.innerHTML == '+') {
+                    sessionVal += 1;
+                    sessionTime.innerHTML = sessionVal;
+                    clockTimer.innerHTML = convertToString(sessionVal * 60);
+                    clockTitle.innerHTML = 'Session'
+                }
+            }
+        }
+
+        for (var i in breakBtn) {
+            breakBtn[i].onclick = function () {
+                if (this.innerHTML == '-') {
+                    if (breakVal > 1) {
+                        breakVal -= 1;
+                        breakTime.innerHTML = breakVal;
+                    }
+
+                } else if (this.innerHTML == '+') {
+                    breakVal += 1;
+                    breakTime.innerHTML = breakVal;
+                }
+            }
+        }
+
+        function reset(){
+            clockTimer.innerHTML = '25:00';
+            timerType = 'session';
+            clockTitle.innerHTML = 'Session';
+            sessionVal = 25;
+            breakVal = 5;
+            pauseTimer();
+        }
+
+        function startClock(duration) {
+            clockTimer.innerHTML = convertToString(duration);
+            duration -= 1;
+            id = setTimeout(function () {
+                startClock(duration)
+            }, 1000);
+            if (timerType == 'session' && clockTimer.innerHTML == '00:00') {
+                audio.play();
+                setTimeout(function () {
+                    pauseTimer();
+                    timerType = 'break';
+                    changeType();
+                    var breaktime = breakVal * 60;
+                    startClock(breaktime);
+                }, 1000);
+            }
+            if (timerType == 'break' && clockTimer.innerHTML == '00:00') {
+                audio.load();
+                audio.play();
+                setTimeout(function(){
+                    pauseTimer();
+                    timerType = 'session';
+                    changeType();
+                    var sessionTime = sessionVal * 60;
+                    startClock(sessionTime);
+                })
+            }
+
+        }
+
+        function pauseTimer() {
+            clearTimeout(id);
+
+        }
+
+        function changeType() {
+            if (timerType == 'session') {
+                clockTitle.textContent = 'Session';
+            }
+
+            if (timerType == 'break') {
+                clockTitle.textContent = 'Break';
+            }
+        }
+
+        function handleStartPause() {
+            var duration = convertToTime(clockTimer.innerHTML);
+            if (clock.classList.contains('start')) {
+                startClock(duration);
+                clock.classList.remove('start');
+                clock.classList.add('pause');
+                return;
+            }
+            if (clock.classList.contains('pause')) {
+                clock.classList.remove('pause');
+                clock.classList.add('start');
+                pauseTimer();
+                return;
+            }
+        }
+
+        function convertToTime(str) {
+            var minutes = str.substring(0, 2);
+            var seconds = str.substring(3, 5);
+            var min = parseInt(minutes);
+            var sec = parseInt(seconds);
+            var duration = (min * 60) + sec;
+            return duration;
+        }
+
+        function convertToString(seconds) {
+            var min, sec;
+            min = Math.floor(seconds / 60);
+            sec = seconds % 60;
+            return pad(min) + ':' + pad(sec);
+        }
+
+        function pad(val) {
+            return ('00' + val).slice(-2);
+        }
+
+
+    </script>
+</body>
+
+</html>
