@@ -1,0 +1,106 @@
+body{
+    background: #31a9b8;
+    height: 100vh;
+    display: grid;
+    font-family: 'Quicksand';
+    display: flex;
+    overflow: hidden;
+}
+
+#table{
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 50px;
+    align-self: center;
+}
+
+.box{
+    border: #f5be41 solid 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    color: #cf3721;
+    user-select: none;
+    cursor: pointer;
+}
+
+.endgame{
+    display: none;
+    background: #333;
+    opacity: 0.9;
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    top: 40%;
+    left: 25%;
+    color: #fff;
+}
+
+.text{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.box0{
+    border-top: none;
+    border-left: none;
+}
+
+.box1{
+    border-top: none;
+}
+
+.box2{
+    border-right: none;
+    border-top: none;
+}
+
+.box3{
+    border-left: none;
+}
+
+.box5{
+    border-right: none;
+}
+
+.box6{
+    border-left: none;
+    border-bottom: none;
+}
+
+.box7{
+    border-bottom: none;
+}
+
+.box8{
+    border-right: none;
+    border-bottom: none;
+}
+
+.playBtn{
+    height: 30px;
+    width: 100px;
+    position: absolute;
+    background: #333;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Quicksand';
+}
+
+.disabled{
+    pointer-events: none;
+}
+
+@media(max-width: 550px){
+    #table{
+        height: 400px;
+        width: 400px;
+    }
+}
