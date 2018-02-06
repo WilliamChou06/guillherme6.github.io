@@ -1,0 +1,88 @@
+body, html{
+    height: 100%;
+    margin: 0;
+    font: "Lato", sans-serif 16px;
+    font-weight: 400;
+    line-height: 1.8em;
+    color: #666;
+}
+
+.pimg1, .pimg2, .pimg3{
+    background-size: cover;
+    background-position: center;
+    opacity: 0.70;
+    background-repeat: no-repeat;
+    /* Parallax Effect */
+    background-attachment: fixed;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pimg1{
+    background-image: url(../img/img1.jpeg);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.footer{
+    min-height: 50%;
+}
+
+.pimg2{
+    background-image: url(../img/img2.jpeg);
+    min-height: 50%;
+}
+
+.pimg3{
+    background-image: url(../img/img3.jpeg);
+    min-height: 50%;
+}
+
+.section{
+    padding: 40px 80px;
+    text-align: center;
+}
+
+.section-light{
+    background: #f4f4f4;
+    color: #666;
+}
+
+.section-dark{
+    background: #282e34;
+    color: #ddd;
+}
+
+.ptext{
+    color: #000;
+    font-size: 27px;
+    letter-spacing: 8px;
+    text-align: center;
+}
+
+.border{
+    border: 1px solid #000;
+    padding: 20px;
+    background: #111;
+    color: #fff; 
+    line-height: 1.6em;
+}
+
+.border-trans{
+    background: transparent;
+    color: #000;
+    font-size: 35px;
+}
+
+@media(max-width: 768px){
+    .pimg1, .pimg2, .pimg3{
+        background-attachment: scroll;
+    }
+}
